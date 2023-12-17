@@ -1,0 +1,52 @@
+
+const env = {};
+
+// const API_HOST = `${env?.API_HOST}/v1`;
+// const WS_HOST = env?.WS_HOST;
+
+// const API_HOST = `http://localhost:2002/v1`;
+const API_HOST = `http://192.168.1.190:2002/v1`;
+// const WS_HOST = 'ws://localhost:3000';
+const WS_HOST = 'ws://192.168.1.190:3000';
+
+module.exports = {
+    setEnvVars: function (key, value) {
+        env[key] = value;
+
+        console.log('SETTING: ', key, ' : ', value);
+    },
+    getEnv() {
+        console.log('ENV: ', env);
+    },
+    WS_HOST: WS_HOST,
+    API_HOST: API_HOST,
+
+    datasource: {
+        all: `${API_HOST}/datasource/all`
+    },
+    roles: {
+        createEdit: `${API_HOST}/role`,
+        all: `${API_HOST}/role/all`,
+    },
+    auth: {
+        register: API_HOST + '/auth/register',
+        uploadAvarar: API_HOST + '/auth/avatar',
+        updateAccount: API_HOST + '/auth/user',
+        forgotPassword: API_HOST + '/auth/forgot-password',
+        resestPassword: API_HOST + '/auth/reset-password'
+    },
+    general: {
+        notifications: API_HOST + '/notification/all',
+    },
+    project: {
+        create: API_HOST + '/project',
+        stats: API_HOST + '/project/stats',
+        projectDependancies: `${API_HOST}/project/}`,
+    },
+    service: {
+        all: API_HOST + '/service/all',
+    },
+    assets: {
+        avatars: AVATARS_HOST,
+    },
+};

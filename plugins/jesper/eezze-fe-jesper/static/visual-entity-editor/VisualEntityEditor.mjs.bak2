@@ -1,0 +1,347 @@
+import ModuleList from './modules/module-list.mjs';
+
+class VisualEntityEditor {
+
+	ctx;
+	canvas;
+	mouseX;
+	mouseY;
+	mouseOverModule;
+	disableDrag = false;
+	isDraging = false;
+	isConnecting = false;
+	connectionData = null;
+	connectingFrom;
+	events = {};
+
+	content;
+
+	entities = {};
+
+	modules = new ModuleList();
+
+	constructor(canvas, content, interact) {
+console.log('canvas: ', canvas);
+console.log('content: ', content);
+	  this.canvas = canvas;
+	  this.content = content;
+	  this.canvas.width = window.innerWidth;
+	  this.canvas.height = window.innerHeight;
+	  this.ctx = canvas.getContext("2d");
+	  this.globalEventHandlers();
+
+		interact(".entity")
+		.draggable({
+		  modifiers: [
+		    interact.modifiers.snap({
+		      targets: [
+		        interact.snappers.grid({ x: 25, y: 25 })
+		      ],
+		      range: Infinity,
+		      relativePoints: [ { x: 0, y: 0 } ]
+		    })
+		  ],
+		  inertia: true
+		})
+		.on('dragmove', (event) => {
+			this.isDraging = true;
+			if(!this.disableDrag) {
+				let target = event.target;
+				if(!target.x) target.x = 0;
+				if(!target.y) target.y = 0;
+			  target.x += event.dx
+			  target.y += event.dy
+			  $(".entity").css("z-index", 1);
+			  $(target).css("z-index", 2);
+			  event.target.style.transform = 'translate(' + target.x + 'px, ' + target.y + 'px)'
+			}
+		})
+		.on('dragend', (event) => {
+			let target = event.target;
+			$(this.events).trigger("change", { action: "move-entity", entity: this.entities[$(target).data("id")] });
+	 		setTimeout(() => {
+				this.isDraging = false;
+			}, 0);
+		})
+	}
+
+	globalEventHandlers() {
+	  $(document).on("mousemove", (e) => {
+	     this.mouseX = e.pageX;
+	     this.mouseY = e.pageY;
+	  });
+
+		$(document).keyup((e) => {
+		  if (e.keyCode == 27) {
+				this.isConnecting = false;
+		  }
+		});
+
+		$(this.content).click(function() {
+
+		});
+
+		$(this.content).on('dblclick', (event) => {
+			if($(event.target).is("#content")) {
+				let module = this.addEntity("dbTable");
+				let clickX = event.pageX;
+				let clickY = event.pageY + 20;
+				$(module.el).css("left", (clickX - ($(module.el).width() / 2)) + "px");
+				$(module.el).css("top", (clickY - ($(module.el).height() / 2)) + "px");
+				module.data.label.startEdit();
+			}
+		});
+	}
+
+	loadJsonEntities(jsonEntities, parent = null) {
+
+		let entities = {};
+
+		if(jsonEntities) {
+
+			jsonEntities.forEach( (jsonEntity) => {
+
+				if(!this.modules.hasOwnProperty(jsonEntity.type)) return;
+				let args = jsonEntity;
+
+				args.parent = parent;
+
+				let entity = new this.modules[args.type](args);
+
+				entity.render();
+
+				this.entities[args.id] = entity;
+				entities[args.id] = entity;
+
+				if(entity.hasOwnProperty("modules") && entity.modules && entity.modules.length > 0) {
+					let children = this.loadJsonEntities(entity.modules, entity);
+					entity.modules = children;
+				}
+
+			});
+
+		}
+
+		this.draw();
+
+		return entities;
+		
+	}
+
+	addEntity(type, parent = null) {
+
+			let id = this.generateID();
+			//console.log(id);
+			let args = {
+				type: type,
+				id: id,
+				parent: parent
+			}
+			let module = new this.modules[type](args);
+			this.entities[id] = module;
+			
+			if(parent) {
+				parent.modules[id] = module;
+			}
+			
+			module.render();
+
+			$(this.events).trigger("change", { action: "add-entity", entity: module });
+
+			return module;
+
+	}
+
+	removeEntity(id) {
+		
+		if(this.entities[id].hasOwnProperty("modules") && Object.keys(this.entities[id].modules).length > 0) {
+			for (const [index, entity] of Object.entries(this.entities[id].modules)) {
+				this.removeEntity(entity.id);
+			}
+		}
+
+		if(this.entities[id].hasOwnProperty("parent") && this.entities[id].parent.hasOwnProperty("modules") && Object.keys(this.entities[id].parent.modules).length > 0) {
+			delete this.entities[id].parent.modules[id];
+		}
+
+		if(this.entities[id].hasOwnProperty("output") && Object.keys(this.entities[id].output).length > 0) {
+			for (const [index, entity] of Object.entries(this.entities[id].output)) {
+				delete this.entities[id].output[entity.entity_id];
+				delete this.entities[entity.entity_id].input[id];
+			}
+		}
+
+		if(this.entities[id].hasOwnProperty("input") && Object.keys(this.entities[id].input).length > 0) {
+			for (const [index, entity] of Object.entries(this.entities[id].input)) {
+				delete this.entities[id].input[entity.entity_id];
+				delete this.entities[entity.entity_id].output[id];
+			}
+		}
+
+		$(this.entities[id].el).remove();
+
+		$(this.events).trigger("change", { action: "remove-entity", entity: this.entities[id] });
+
+		delete this.entities[id];
+
+	}
+
+	draw(timeStamp) {
+		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+		if(this.entities) {
+			for (const [id, entity] of Object.entries(this.entities)) {
+				entity.draw();
+			};
+		}
+
+		window.requestAnimationFrame(() => this.draw());
+	}
+
+	connect(e1, e2, data = null) {
+		$(this.events).trigger("change", { action: "connect", entity1: e1, entity2: e2 });
+		e1.addOutput(e2, data);
+		e2.addInput(e1, data);
+	}
+
+	disconnect(e1, e2) {
+		$(this.events).trigger("change", { action: "disconnect", entity1: e1, entity2: e2 });
+		e1.delOutput(e2);
+		e2.delInput(e1);
+	}
+
+	drawConnection(source, target) {
+
+		let e1;
+		let e2;
+		let followCursor = false;
+
+		if(source) {
+			e1 = {
+				"pos": {
+					"x1": $(source.parent.el).offset().left,
+					"y1": $(source.parent.el).offset().top,
+					"x2": $(source.parent.el).offset().left + $(source.parent.el).width(),
+					"y2": $(source.parent.el).offset().top + $(source.parent.el).height()
+				},
+				"anchor": {
+					"x": Math.round($(source.parent.el).offset().left + $(source.parent.el).width()),
+					"y": Math.round($(source.el).offset().top + ($(source.el).height()/2) )
+				}
+			}
+		}
+
+		if(!target && this.isConnecting && this.mouseOverModule) {
+			if(this.mouseOverModule.validInput.types.includes(this.connectingFrom.constructor.name)) {
+				if(this.mouseOverModule.parent.id && this.connectingFrom.parent.id && this.mouseOverModule.parent.id != this.connectingFrom.parent.id) {
+					target = this.mouseOverModule;
+				}
+			}
+		}
+
+		if(target) {
+			e2 = {
+				"pos": {
+					"x1": $(target.parent.el).offset().left,
+					"y1": $(target.parent.el).offset().top,
+					"x2": $(target.parent.el).offset().left + $(target.parent.el).width(),
+					"y2": $(target.parent.el).offset().top + $(target.parent.el).height()
+				},
+				"anchor": {
+					"x": Math.round($(target.parent.el).offset().left),
+					"y": Math.round($(target.el).offset().top + ($(target.el).height()/2))
+				}
+			}
+		} else {
+			followCursor = true;
+			e2 = {
+				"anchor": {
+					"x": this.mouseX,
+					"y": this.mouseY
+				}
+			}
+		}
+
+		if(!e1 || !e2) return;
+
+		let points = [];
+
+		this.ctx.beginPath();
+
+		let moduleLineSpace = 25;
+
+		if((e1.anchor.x >= e2.anchor.x) && !followCursor) {
+			points.push({ "x": e1.anchor.x, "y": e1.anchor.y });
+
+			points.push({ "x": ((e1.anchor.x + moduleLineSpace <= e2.pos.x2) ? e2.pos.x2 : e1.anchor.x) + moduleLineSpace, "y": e1.anchor.y });
+
+			// Don't even ask... black magic? witch craft? either way it seems to work.
+			let e1_under_e2 = e1.pos.y1 > e2.pos.y1;
+			let can_fit = (e1_under_e2 ? (e1.pos.y1 - e2.pos.y2) : (e2.pos.y1 - e1.pos.y2)) > moduleLineSpace;
+			let complicated = e1_under_e2 ? (can_fit ? e1.pos.y1 - ((e1.pos.y1 - e2.pos.y2) / 2) : e2.pos.y1 - moduleLineSpace ) : (can_fit ? e1.pos.y2 + ((e2.pos.y1 - e1.pos.y2) / 2) : e2.pos.y2 + moduleLineSpace );
+
+			points.push({ "x": points.slice(-1)[0].x, "y": complicated });
+
+			points.push({ "x": e2.pos.x1 - moduleLineSpace, "y": points.slice(-1)[0].y });
+
+			points.push({ "x": e2.pos.x1 - moduleLineSpace, "y": e2.anchor.y });
+
+			points.push({ "x": e2.anchor.x, "y": e2.anchor.y });
+
+			points.forEach((pos, i) => {
+				if(i==0) {
+					this.ctx.moveTo(Math.round(pos.x), Math.round(pos.y));
+				} else {
+					this.ctx.lineTo(Math.round(pos.x), Math.round(pos.y));
+				}
+			});
+			
+			this.ctx.stroke();
+		} else {
+			this.ctx.moveTo(e1.anchor.x, e1.anchor.y);
+			this.ctx.lineTo(e2.anchor.x, e2.anchor.y);
+			this.ctx.stroke();
+		}
+
+	}
+
+	generateID() {
+
+		let id = 1;
+
+		if(this.entities && Object.entries(this.entities).length > 0) {
+			for (const [index, entity] of Object.entries(this.entities)) {
+				id = Math.max(id, entity.id);
+			}
+			id += 1;
+		}
+
+		return id;
+
+	}
+
+	sanitize_title(str) {
+		str = str.replace(/^\s+|\s+$/g, ''); // trim
+		str = str.toLowerCase();
+
+		// remove accents, swap ñ for n, etc
+		var from = "àáäâèéëêìíïîòóöôùúüûñçěščřžýúůďťň·/_,:;";
+		var to   = "aaaaeeeeiiiioooouuuuncescrzyuudtn------";
+
+		for (var i=0, l=from.length ; i<l ; i++)
+		{
+			str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+		}
+
+		str = str.replace('.', '-') // replace a dot by a dash 
+			.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+			.replace(/\s+/g, '-') // collapse whitespace and replace by a dash
+			.replace(/-+/g, '-') // collapse dashes
+			.replace( /\//g, '' ); // collapse all forward-slashes
+
+		return str;
+	}
+
+}
+
+export default (new VisualEntityEditor);

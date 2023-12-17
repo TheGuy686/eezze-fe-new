@@ -1,0 +1,1 @@
+open API swagger doc: https://github.com/koumoul-dev/vue-openapi

@@ -1,0 +1,28 @@
+{
+  "name": "eezze-fe-jesper",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt --no-webpack --no-generate && vite",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/auth-next": "5.0.0-1667386184.dfbbb54",
+    "@nuxtjs/axios": "^5.13.6",
+    "colors": "^1.4.0",
+    "core-js": "^3.25.3",
+    "jquery": "^3.6.4",
+    "nuxt": "^2.15.8",
+    "urlencode": "^1.1.0",
+    "vue": "^2.7.10",
+    "vue-jquery": "^1.0.6",
+    "vue-openapi": "^0.10.0",
+    "vue-server-renderer": "^2.7.10",
+    "vue-template-compiler": "^2.7.10"
+  },
+  "devDependencies": {
+    "vite": "^4.3.5"
+  }
+}

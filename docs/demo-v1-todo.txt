@@ -1,0 +1,13 @@
+1. I'll focus on getting that done getting the UI of this process done tomorrow. 
+    - Get reviews working properly - ✅
+
+2. Then i'll get your health check stuff done - ✅
+3. Then i'll get the host and IP stuff added to the create project from wizard - ✅
+4. Then lastly i'll get the add to project from store endpoint done - HARD
+5. Then UI issues in the service / service group stuff more stable - MODERATE - ✅
+
+Optionals:
+6. Get the swagger UI thing working (lowest priority) - ✅ with constant adding and tweaking
+7. Add in the prompt version to plugin to chatGPT for the prototype
+8. lastly addinng more options back into the business logic UI for more testing and then i think that pretty much it for v1 demo
+9. Finish the context menu and make sure its stable

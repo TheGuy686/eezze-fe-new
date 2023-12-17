@@ -1,0 +1,40 @@
+db types: 'database'
+
+'create-one'
+'get-one'
+'update-one'
+'delete-one'
+'get-list'
+'get-one-and-update'
+'create-one-if-not-exists'
+
+File types: 'files'
+
+'save'
+'delete'
+'read'
+
+EMail Types: 'email'
+
+'send-smtp-email'
+
+Response Types: 'response'
+
+'redirect'
+
+Server Types: 'server'
+
+'rest-action'
+'socket-action'
+
+Misc: 
+
+'render-template'
+'command'
+'error'
+'service-call'
+'success'
+
+Logic: 'misc'
+
+'list'

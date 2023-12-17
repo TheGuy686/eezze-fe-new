@@ -1,0 +1,88 @@
+[
+	{
+		"type": "dbTable",
+		"id": 1,
+		"name": "User",
+		"position": { "x": 600, "y": 350 },
+		"modules": [
+			{
+				"type": "dbColumn",
+				"id": 2,
+				"name": "ID",
+				"key_primary": true,
+				"output": { 
+					"6": { 
+						"entity_id": 6,
+						"data": {
+							"type": "n:1"
+						}
+					} 
+				}
+			},
+			{
+				"type": "dbColumn",
+				"id": 3,
+				"name": "Username"
+			},
+			{
+				"type": "dbColumn",
+				"id": 4,
+				"name": "Password"
+			}
+		]
+	},
+	{
+		"type": "dbTable",
+		"id": 5,
+		"name": "Order",
+		"position": { "x": 850, "y": 350 },
+		"modules": [
+			{
+				"type": "dbColumn",
+				"id": 6,
+				"name": "ID",
+				"input": { 
+					"2": { 
+						"entity_id": 2,
+						"data": {
+							"type": "n:1"
+						}
+					} 
+				}
+			},
+			{
+				"type": "dbColumn",
+				"id": 7,
+				"name": "Product"
+			},
+			{
+				"type": "dbColumn",
+				"id": 8,
+				"name": "Amount"
+			}
+		]
+	},
+	{
+		"type": "dbTable",
+		"id": 9,
+		"name": "Product",
+		"position": { "x": 1100, "y": 350 },
+		"modules": [
+			{
+				"type": "dbColumn",
+				"id": 10,
+				"name": "ID"
+			},
+			{
+				"type": "dbColumn",
+				"id": 11,
+				"name": "Name"
+			},
+			{
+				"type": "dbColumn",
+				"id": 12,
+				"name": "Price"
+			}
+		]
+	}
+]

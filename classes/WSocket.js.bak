@@ -1,0 +1,119 @@
+var W3CWebSocket = require('websocket').w3cwebsocket;
+
+module.exports = class WSocket {
+	autoReconnect = true;
+	autoReconnectDelay = 4000;
+	socket = null; 
+	isConnected = false;
+	events = {};
+	commit;
+	tmr;
+
+	constructor(url, path = '', autoReconnect = true, commit) {
+		this.autoReconnect = autoReconnect;
+		this.connect(url, path);
+		this.commit = commit;
+	}
+
+	connect (url, path) {
+		if (this.isConnected) return;
+console.log(`${url}${path != '' ? `?${path}` : ''}`);
+		try {
+			const socket = new W3CWebSocket(`${url}${path != '' ? `?${path}` : ''}`, 'echo-protocol');
+
+			this.socket = socket;
+
+			this.socket.onopen = () => {
+				// this.isConnected = false;
+
+				// this.initSocket();
+
+				// this.emit('connected');
+			};
+
+			// this.socket.onerror = () => {
+			// 	console.log('Connection Error');
+
+			// 	this.isConnected = false;
+
+			// 	this.resetTmr(url, path);
+			// };
+
+			// this.socket.onclose = () => {
+			// 	this.isConnected = false;
+			// 	this.emit('disconnected');
+			// };
+		}
+		catch (e) {
+			console.log('Error: ', e.message);
+		}
+	}
+
+	initSocket() {
+		this.socket.onmessage = (e) =>
+		{
+			if (typeof e.data === 'string')
+			{
+				let evt;
+
+				try
+				{
+					evt = JSON.parse(e.data);
+
+					let eventName, data;
+
+					if (typeof evt['eventName'] != 'undefined') eventName = evt['eventName'];
+					if (typeof evt['data']      != 'undefined') data      = evt['data'];
+
+					this.emit(eventName, data);
+				}
+				catch (e)
+				{
+					console.log('Error: ', e.message);
+				}
+			}
+		};
+ 	}
+
+	on (eventName, cb) {
+		this.events[eventName] = this.events[eventName] || [];
+
+		this.events[eventName][String(cb)] = cb;
+	}
+
+	off (eventName, cb) {
+		if (this.events[eventName][String(cb)]) {
+			delete this.events[eventName][String(cb)];
+		}
+	}
+
+	emit (eventName, data = {}) {
+		if (typeof this.events[eventName] != 'undefined') {
+			let k;
+
+			for (k in this.events[eventName]) {
+				if (this.commit) {
+					this.events[eventName][k](data, this.commit);
+				}
+				else {
+					this.events[eventName][k](data);
+				}
+			}
+		}
+	}
+
+	emitToServer (eventName, data = {}) {
+		console.log('WS PAYLOAD TO SERVER: ', JSON.stringify({eventName, data}));
+
+		this.socket.send(JSON.stringify({eventName, data}));
+	}
+
+	resetTmr(url, path) {
+		if (this.autoReconnect) {
+			console.clear();
+			if (this.tmr) clearTimeout(this.tmr);
+			console.log('Reconnecting');
+			this.tmr = setTimeout(() => this.connect(url, path), this.autoReconnectDelay);
+		}
+	}
+}

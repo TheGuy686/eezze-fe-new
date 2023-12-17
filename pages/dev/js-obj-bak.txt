@@ -1,0 +1,1110 @@
+innerActionChain: [
+    {
+        id: 'action-1',
+        property: 'filename',
+        name: '',
+        desc: '',
+        // this is so that we can make sure the logic chain and the retrun type of the logic chain are the same types
+        type: 'text',
+        actions: [
+        {
+            id: '1',
+            type: 'text',
+            name: 'Action 1',
+            actions: [
+            {
+                id: '1-1',
+                // type: 'math-calculation',
+                type: 'new',
+                // this could be different per type
+                logic: {
+                formula: '123${1}*73+12${2}',
+                raw: '123${1}*73+12${2}',
+                variables: [
+                    {
+                    id: 1,
+                    pos: 1,
+                    color: 'blue',
+                    example: 2
+                    },
+                    {
+                    id: 2,
+                    pos: 2,
+                    color: 'black',
+                    example: 2
+                    },
+                    {
+                    id: 3,
+                    pos: 3,
+                    color: 'orange',
+                    example: 2
+                    }
+                ]
+                },
+                returns:  'number',
+                actions: [],
+            }
+            ]
+        },
+        {
+            id: '2',
+            type: 'text',
+            name: 'Action 2',
+            actions: [
+            {
+                id: '2-1',
+                // type: 'math-calculation',
+                type: 'number-operation',
+                // type: 'new',
+                // this could be different per type
+                logic: {
+                subtype: 'calculation',
+                formula: '123${1}*73+12${2}${3}',
+                raw: '123${1}*73+12${2}${3}',
+                variables: [
+                    {
+                    id: 1,
+                    pos: 1,
+                    color: 'blue',
+                    value: 'fill-path',
+                    example: 2
+                    },
+                    {
+                    id: 2,
+                    pos: 2,
+                    color: 'orange',
+                    value: 'fill-path',
+                    example: 2
+                    },
+                    {
+                    id: 3,
+                    pos: 3,
+                    color: 'black',
+                    value: 'fill-path',
+                    example: 2
+                    }
+                ],
+                opArgs: []
+                },
+                returns:  'number',
+                actions: [],
+            },
+            {
+                id: '2-2',
+                type: 'number-operation',
+                // this could be different per type
+                // this should be called metadata
+                logic: {
+                subtype: 'calculation',
+                formula: '123${1}*73+12${2}${3}',
+                raw: '123${1}*73+12${2}${3}',
+                opArgs: [],
+                variables: [
+                    {
+                    id: 1,
+                    pos: 1,
+                    color: 'red',
+                    value: 'host',
+                    example: 2
+                    },
+                    {
+                    id: 2,
+                    pos: 2,
+                    color: 'brown',
+                    value: 'host',
+                    example: 2
+                    },
+                    {
+                    id: 3,
+                    pos: 3,
+                    color: 'black',
+                    value: 'host',
+                    example: 2
+                    }
+                ]
+                },
+                returns:  'number',
+                actions: [],
+            },
+            {
+                id: 'adfwersdfasdf',
+                type: 'number-operation',
+                logic:{
+                subtype: 'addition',
+                prop: '',
+                format: '',
+                source: '',
+                example: '',
+                raw: '',
+                opArgs:[
+                    {
+                    id: 'arg-1',
+                    value: 'host',
+                    example: '12'
+                    },
+                ],
+                variables:[]
+                },
+                returns: 'number',
+                actions: []
+            },
+            {
+                id: '2-2-3',
+                type: 'assign-values',
+                logic: '',
+                returns:  'void',
+                actions: [
+                {
+                    id: 'assign-id-test-1',
+                    type: 'number-operation',
+                    logic: {
+                    subtype: 'calculation',
+                    prop: 'prop12',
+                    formula: '123${1}*73+12${2}',
+                    raw: '123${1}*73+12${2}',
+                    opArgs: [],
+                    variables: [
+                        {
+                        id: 1,
+                        example: 2
+                        },
+                        {
+                        id: 2,
+                        example: 2
+                        },
+                        {
+                        id: 3,
+                        example: 2
+                        }
+                    ]
+                    },
+                    returns:  'number',
+                    actions: [],
+                },
+                {
+                    id: 'assign-id-test-2',
+                    type: 'formatter',
+                    logic: {
+                    subtype: 'string-interpolate',
+                    prop: 'prop2',
+                    raw: '${1} - ${2}',
+                    variables: [
+                        {
+                        id: 1,
+                        example: 'Ryan'
+                        },
+                        {
+                        id: 2,
+                        example: 'Cooke'
+                        },
+                    ]
+                    },
+                    returns:  'text',
+                    actions: [],
+                },
+                {
+                    id: 'assign-id-test-3',
+                    type: 'formatter',
+                    logic: {
+                    subtype: 'date-interpolate',
+                    prop: 'prop3',
+                    format: 'DD/MM/YYYY',
+                    source: 'full-url',
+                    example: '2022-01-12 18:10:43',
+                    raw: '${1}-${2}-${3}: ${4}',
+                    opArgs: [
+                        {
+                        id: 'arg-1',
+                        value: 1,
+                        example: '12'
+                        },
+                    ],
+                    variables: [
+                        {
+                        id: 1,
+                        pos: 1,
+                        color: 'blue',
+                        format: {
+                            group: 'year',
+                            value: 'YYYY'
+                        },
+                        value: 'full-url',
+                        example: '2022'
+                        },
+                        {
+                        id: 2,
+                        pos: 2,
+                        color: 'orange',
+                        format: {
+                            group: 'month',
+                            value: 'MM'
+                        },
+                        value: 'full-url',
+                        example: '02'
+                        },
+                        {
+                        id: 3,
+                        pos: 3,
+                        color: 'brown',
+                        format:{ 
+                            group: 'quarter',
+                            value: 'Q' 
+                        },
+                        value: 'full-url',
+                        example: '31'
+                        },
+                        {
+                        id: 4,
+                        pos: 4,
+                        color: 'red',
+                        value: 'host',
+                        example: '31'
+                        },
+                    ]
+                    },
+                    returns:  'text',
+                    actions: [],
+                },
+                {
+                    id: 'assign-id-test-4',
+                    type: 'action-context',
+                    logic: {
+                    subtype: 'host',
+                    prop: 'prop4',
+                    raw: '',
+                    variables: []
+                    },
+                    returns:  'text',
+                    actions: [],
+                },
+                {
+                    id: 'assign-id-test-5',
+                    type: 'number-operation',
+                    logic:{
+                    subtype: 'addition',
+                    prop: 'prop5',
+                    format: '',
+                    source: '',
+                    example: '',
+                    raw: '',
+                    opArgs:[
+                        {
+                        id: 'arg-1',
+                        value: 'host',
+                        example: '12'
+                        },
+                    ],
+                    variables:[]
+                    },
+                    returns: 'number',
+                    actions: []
+                },
+                {
+                    id: 'assign-id-test-6',
+                    type: 'assign-primitive',
+                    logic: { 
+                    prop: 'prop6',
+                    subtype: 'text',
+                    raw:  'This is just a string',
+                    format: '',
+                    example: '',
+                    source: '',
+                    variables:[],
+                    opArgs:[],
+                    },
+                    returns: 'text',
+                    actions: [],
+                },
+                {
+                    id: 'assign-id-test-7',
+                    type: 'assign-primitive',
+                    logic: { 
+                    prop: 'prop7',
+                    subtype: 'number',
+                    raw:  '${1}0${2}34${3}5',
+                    format: '',
+                    example: '',
+                    source: '',
+                    variables:[
+                        {
+                        id: 1,
+                        pos: 1,
+                        color: 'blue',
+                        value: 'full-url',
+                        example: '2022'
+                        },
+                        {
+                        id: 2,
+                        pos: 2,
+                        color: 'orange',
+                        value: 'full-url',
+                        example: '02'
+                        },
+                        {
+                        id: 3,
+                        pos: 3,
+                        color: 'brown',
+                        value: 'full-url',
+                        example: '31'
+                        },
+                    ],
+                    opArgs:[],
+                    },
+                    returns: 'text',
+                    actions: [],
+                },
+                {
+                    id: 'assign-id-test-8',
+                    type: 'assign-primitive',
+                    logic: { 
+                    prop: 'prop17',
+                    subtype: 'object',
+                    raw:  [
+                        {
+                            key: 'propMain',
+                            value: 'host',
+                            returns: 'object',
+                            data:  [
+                            {
+                                key: 'prop1',
+                                value: 'host',
+                                returns: 'number',
+                                data: []
+                            },
+                            {
+                                key: 'prop2',
+                                value: 'host',
+                                returns: 'text',
+                                data: []
+                            },
+                            {
+                                key: 'prop3',
+                                value: 'full-url',
+                                returns: 'boolean',
+                                data: []
+                            },
+                            {
+                                key: 'prop34',
+                                value: '',
+                                returns: 'object',
+                                data: [
+                                {
+                                    key: 'prop344',
+                                    value: '',
+                                    returns: 'object',
+                                    data: [
+                                    {
+                                        key: 'prop34546',
+                                        value: '',
+                                        returns: 'object',
+                                        data: [
+                                        {
+                                            key: 'prop348765',
+                                            value: 'host',
+                                            returns: 'boolean',
+                                            data: []
+                                        }
+                                        ]
+                                    }
+                                    ]
+                                }
+                                ]
+                            }
+                            ]
+                        },
+                        {
+                            key: 'rtyuhf',
+                            value: 'host',
+                            returns: 'number',
+                            data: []
+                        },
+                    ],
+                    format: '',
+                    example: '',
+                    source: '',
+                    variables:[],
+                    opArgs:[],
+                    },
+                    returns: 'object',
+                    actions: [],
+                },
+                {
+                    id: 'assign-id-test-9',
+                    type: 'assign-primitive',
+                    logic: { 
+                    prop: 'prop8',
+                    subtype: 'boolean',
+                    raw:  [
+                        {
+                        type: 'condition',
+                        operator: 'equals-to',
+                        opArgs: [
+                            {
+                            id: 'arg-1',
+                            type: 'boolean',
+                            value: 'host',
+                            example: '3',
+                            },
+                            {
+                            id: 'arg-2',
+                            type: 'number-operation',
+                            value: 'host',
+                            example: '3',
+                            }
+                        ]
+                        },
+                        {
+                        type: 'linker',
+                        operator: 'and',
+                        opArgs: [],
+                        },
+                        {
+                        type: 'condition',
+                        operator: 'equals-to',
+                        opArgs: [
+                            {
+                            id: 'arg-3',
+                            type: 'number-operation',
+                            value: 'host',
+                            example: '3',
+                            },
+                            {
+                            id: 'arg-4',
+                            type: 'number-operation',
+                            value: 'host',
+                            example: '3',
+                            }
+                        ],
+                        },
+                        {
+                        type: 'linker',
+                        operator: 'or',
+                        opArgs: [],
+                        },
+                        {
+                        type: 'condition-group',
+                        opArgs: [],
+                        group: [
+                            {
+                            type: 'condition',
+                            operator: 'equals-to',
+                            opArgs: [
+                                {
+                                id: 'arg-5',
+                                type: 'number-operation',
+                                value: 'host',
+                                example: '31',
+                                },
+                                {
+                                id: 'arg-6',
+                                type: 'number-operation',
+                                value: 'host',
+                                example: '31',
+                                }
+                            ]
+                            },
+                            {
+                            type: 'linker',
+                            operator: 'or',
+                            opArgs: [],
+                            },
+                            {
+                            type: 'condition',
+                            operator: 'is-less-than',
+                            opArgs: [
+                                {
+                                id: 'arg-7',
+                                type: 'number-operation',
+                                value: 'host',
+                                example: '100',
+                                },
+                                {
+                                id: 'arg-8',
+                                type: 'number-operation',
+                                value: 'host',
+                                example: '101',
+                                }
+                            ]
+                            },
+                            {
+                            type: 'linker',
+                            operator: 'and',
+                            opArgs: [],
+                            },
+                            {
+                            type: 'condition-group',
+                            opArgs: [],
+                            group: [
+                                {
+                                type: 'condition',
+                                operator: 'equals-to',
+                                opArgs: [
+                                    {
+                                    id: 'arg-5',
+                                    type: 'number-operation',
+                                    value: 'host',
+                                    example: '10',
+                                    },
+                                    {
+                                    id: 'arg-6',
+                                    type: 'number-operation',
+                                    value: 'host',
+                                    example: '10',
+                                    }
+                                ]
+                                },
+                                {
+                                type: 'linker',
+                                operator: 'and',
+                                opArgs: [],
+                                },
+                                {
+                                type: 'condition',
+                                operator: 'is-less-than',
+                                opArgs: [
+                                    {
+                                    id: 'arg-7',
+                                    type: 'number-operation',
+                                    value: 'host',
+                                    example: '-9',
+                                    },
+                                    {
+                                    id: 'arg-8',
+                                    type: 'number-operation',
+                                    value: 'host',
+                                    example: '0',
+                                    }
+                                ]
+                                },
+                            ]
+                            },
+                        ]
+                        },
+                        {
+                        type: 'linker',
+                        operator: 'or',
+                        opArgs: [],
+                        },
+                        {
+                        type: 'condition',
+                        operator: 'number-is-between-range',
+                        opArgs: [
+                            {
+                            id: 'arg-10',
+                            type: 'number-operation',
+                            value: 'host',
+                            example: '2',
+                            },
+                            {
+                            id: 'arg-11',
+                            type: 'number-operation',
+                            value: 'host',
+                            example: '1',
+                            },
+                            {
+                            id: 'arg-12',
+                            type: 'number-operation',
+                            value: 'host',
+                            example: '3',
+                            },
+                        ]
+                        },
+                    ],
+                    format: '',
+                    example: true,
+                    source: '',
+                    variables:[],
+                    opArgs:[],
+                    },
+                    returns: 'boolean',
+                    actions: [],
+                },
+                {
+                    id: 'assign-id-test-10',
+                    type: 'assign-primitive',
+                    logic: { 
+                    prop: 'prop99',
+                    subtype: 'list',
+                    raw:  'list-combination',
+                    format: '',
+                    example: '',
+                    source: '',
+                    variables: [],
+                    opArgs: [
+                        {
+                        "value": "host",
+                        "example": 21
+                        },
+                        {
+                        "value": "accessed-from-browser",
+                        "example": 21
+                        },
+                        {
+                        "value": "full-path",
+                        "example": 19
+                        },
+                        {
+                        "value": "full-url",
+                        "example": 49
+                        },
+                        {
+                        "value": "ip-address",
+                        "example": 45
+                        },
+                        {
+                        "value": "host",
+                        "example": 70
+                        }
+                    ],
+                    },
+                    returns: 'list',
+                    actions: [],
+                },
+                {
+                    id: 'assign-id-test-11',
+                    type: 'custom',
+                    logic: {
+                    prop: 'prop99',
+                    raw:  `const ryan = 'hello';
+
+let ryan1         =     \`\${ryan} - something\`;
+
+let ryan3;
+
+let ryan4       =          'ryan5';
+
+let           ryan5 = 'ryan22';
+
+let    ryan6 = 'ryan0';
+
+let ryan7='ryan1';
+
+let ryan8 = 'ryan2'
+
+let ryan9;
+
+let ryan10, ryan11, ryan12;
+
+let ryan13, 
+ryan14, 
+ryan15;
+
+ryan9 = \`ryan was here\`;
+
+return ryan;`,
+                    format: '',
+                    example: [],
+                    source: '',
+                    variables:[],
+                    opArgs:[],
+                    },
+                    returns: 'text',
+                    actions: [],
+                }
+                ],
+            },
+            {
+                id: '2-2-4',
+                type: 'formatter',
+                logic: {
+                source: 'host',
+                raw: '',
+                prop: '',
+                fomula: '',
+                format: 'YYYY-MM-DD hh:mm:ss',
+                subtype: 'date-interpolate',
+                example: '2022-12-13',
+                variables: [
+                    {
+                    id: 1,
+                    pos: 1,
+                    color: 'red',
+                    value: 'host',
+                    format: {
+                        group: 'year',
+                        value: 'YYYY'
+                    },
+                    example: '2022-12-13'
+                    }
+                ],
+                opArgs: [],
+                },
+                returns:  'text',
+                actions: [],
+            },
+            {
+                id: '2-2-5',
+                type: 'list-process',
+                // this could be different per type
+                logic: {
+                source: '',
+                subtype: '',
+                prop: '',
+                raw: 'host',
+                operation: '',
+                variables: [],
+                opArgs: [],
+                },
+                returns:  'list',
+                actions: [],
+            },
+            {
+                id: 'ryans-test-id',
+                type: 'list-process',
+                // this could be different per type
+                logic: {
+                source: '',
+                subtype: '',
+                prop: '',
+                raw: 'host',
+                operation: '',
+                variables: [],
+                opArgs: [],
+                },
+                returns:  'list',
+                actions: [
+                {
+                    id: '2-2-6-1',
+                    type: 'list-process',
+                    // this could be different per type
+                    logic: {
+                    source: '',
+                    subtype: '',
+                    prop: '',
+                    raw: 'host',
+                    operation: '',
+                    variables: [],
+                    opArgs: [],
+                    },
+                    returns:  'list',
+                    actions: [
+                    {
+                        id: '2-2-6-1-1',
+                        type: 'list-process',
+                        // this could be different per type
+                        logic: ``,
+                        returns:  'list',
+                        actions: [],
+                    },
+                    {
+                        id: '2-2-6-1-2',
+                        type: 'format-value',
+                        // this could be different per type
+                        logic: ``,
+                        returns:  'text',
+                        actions: [
+                        {
+                            id: '2-2-6-1-2-1',
+                            type: 'format-value',
+                            // this could be different per type
+                            logic: ``,
+                            returns:  'text',
+                            actions: [],
+                        },
+                        ],
+                    },
+                    ],
+                },
+                {
+                    id: 'action-1-logic-2-logic-54-logic-2',
+                    type: 'list-process',
+                    // this could be different per type
+                    logic: ``,
+                    returns:  'list',
+                    actions: [],
+                },
+                ],
+            },
+            {
+                id: 'action-1-logic-2-logic-6',
+                type: 'set-state-values',
+                // this could be different per type
+                logic: ``,
+                returns:  'boolean',
+                actions: [
+                {
+                    id: 'assign-id-test-1',
+                    type: 'number-operation',
+                    logic: {
+                    subtype: 'calculation',
+                    prop: 'prop12',
+                    formula: '123${1}*73+12${2}',
+                    raw: '123${1}*73+12${2}',
+                    opArgs: [],
+                    variables: [
+                        {
+                        id: 1,
+                        pos: 1,
+                        color: 'blue',
+                        value: 'host',
+                        example: 2
+                        },
+                        {
+                        id: 2,
+                        pos: 2,
+                        color: 'yellow',
+                        value: 'host',
+                        example: 2
+                        },
+                        {
+                        id: 3,
+                        pos: 3,
+                        color: 'red',
+                        value: 'host',
+                        example: 2
+                        }
+                    ]
+                    },
+                    returns:  'number',
+                    actions: [],
+                },
+                ],
+            },
+            {
+                id: 'action-1-logic-2-logic-74',
+                type: 'set-stash-values',
+                // this could be different per type
+                logic: ``,
+                returns:  'boolean',
+                actions: [
+                {
+                    id: 'assign-id-test-1',
+                    type: 'number-operation',
+                    logic: {
+                    subtype: 'calculation',
+                    prop: 'prop12',
+                    formula: '123${1}*73+12${2}',
+                    raw: '123${1}*73+12${2}',
+                    opArgs: [],
+                    variables: [
+                        {
+                        id: 1,
+                        example: 2
+                        },
+                        {
+                        id: 2,
+                        example: 2
+                        },
+                        {
+                        id: 3,
+                        example: 2
+                        }
+                    ]
+                    },
+                    returns:  'number',
+                    actions: [],
+                },
+                {
+                    id: 'assign-id-test-2',
+                    type: 'formatter',
+                    logic: {
+                    subtype: 'string-interpolate',
+                    prop: 'prop2',
+                    raw: '${1} - ${2}',
+                    variables: [
+                        {
+                        id: 1,
+                        example: 'Ryan'
+                        },
+                        {
+                        id: 2,
+                        example: 'Cooke'
+                        },
+                    ]
+                    },
+                    returns:  'text',
+                    actions: [],
+                },
+                {
+                    id: 'assign-id-test-9',
+                    type: 'assign-primitive',
+                    logic: { 
+                    prop: 'prop8',
+                    subtype: 'boolean',
+                    raw:  [
+                        {
+                        type: 'condition',
+                        operator: 'equals-to',
+                        opArgs: [
+                            {
+                            id: 'arg-1',
+                            value: 'host',
+                            example: '3',
+                            },
+                            {
+                            id: 'arg-2',
+                            value: 'host',
+                            example: '3',
+                            }
+                        ]
+                        },
+                        {
+                        type: 'linker',
+                        operator: 'and',
+                        opArgs: [],
+                        },
+                        {
+                        type: 'condition',
+                        operator: 'equals-to',
+                        opArgs: [
+                            {
+                            id: 'arg-3',
+                            value: 'host',
+                            example: '3',
+                            },
+                            {
+                            id: 'arg-4',
+                            value: 'host',
+                            example: '3',
+                            }
+                        ],
+                        },
+                        {
+                        type: 'linker',
+                        operator: 'or',
+                        opArgs: [],
+                        },
+                        {
+                        type: 'condition-group',
+                        opArgs: [],
+                        group: [
+                            {
+                            type: 'condition',
+                            operator: 'equals-to',
+                            opArgs: [
+                                {
+                                id: 'arg-5',
+                                value: 'host',
+                                example: '31',
+                                },
+                                {
+                                id: 'arg-6',
+                                value: 'host',
+                                example: '31',
+                                }
+                            ]
+                            },
+                            {
+                            type: 'linker',
+                            operator: 'or',
+                            opArgs: [],
+                            },
+                            {
+                            type: 'condition',
+                            operator: 'is-less-than',
+                            opArgs: [
+                                {
+                                id: 'arg-7',
+                                value: 'host',
+                                example: '100',
+                                },
+                                {
+                                id: 'arg-8',
+                                value: 'host',
+                                example: '101',
+                                }
+                            ]
+                            },
+                            {
+                            type: 'linker',
+                            operator: 'and',
+                            opArgs: [],
+                            },
+                            {
+                            type: 'condition-group',
+                            opArgs: [],
+                            group: [
+                                {
+                                type: 'condition',
+                                operator: 'equals-to',
+                                opArgs: [
+                                    {
+                                    id: 'arg-5',
+                                    value: 'host',
+                                    example: '10',
+                                    },
+                                    {
+                                    id: 'arg-6',
+                                    value: 'host',
+                                    example: '10',
+                                    }
+                                ]
+                                },
+                                {
+                                type: 'linker',
+                                operator: 'and',
+                                opArgs: [],
+                                },
+                                {
+                                type: 'condition',
+                                operator: 'is-less-than',
+                                opArgs: [
+                                    {
+                                    id: 'arg-7',
+                                    value: 'host',
+                                    example: '-9',
+                                    },
+                                    {
+                                    id: 'arg-8',
+                                    value: 'host',
+                                    example: '0',
+                                    }
+                                ]
+                                },
+                            ]
+                            },
+                        ]
+                        },
+                        {
+                        type: 'linker',
+                        operator: 'or',
+                        opArgs: [],
+                        },
+                        {
+                        type: 'condition',
+                        operator: 'number-is-between-range',
+                        opArgs: [
+                            {
+                            id: 'arg-10',
+                            value: 'host',
+                            example: '2',
+                            },
+                            {
+                            id: 'arg-11',
+                            value: 'host',
+                            example: '1',
+                            },
+                            {
+                            id: 'arg-12',
+                            value: 'host',
+                            example: '3',
+                            },
+                        ]
+                        },
+                    ],
+                    format: '',
+                    example: true,
+                    source: '',
+                    variables:[],
+                    opArgs:[],
+                    },
+                    returns: 'boolean',
+                    actions: [],
+                }
+                ],
+            },
+            {
+                id: 'action-1-logic-2-logic-775',
+                type: 'custom',
+                logic: {
+                raw: `const ryan = 'was here at 5am still working on this ... WOW';`,
+                variables: [],
+                },
+                returns:  'text',
+                actions: [],
+            },
+            ]
+        }
+        ]
+    }
+    ],

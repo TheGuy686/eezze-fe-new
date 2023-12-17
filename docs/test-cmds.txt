@@ -1,0 +1,21 @@
+bash <(wget -qO- http://www.multithreadlabs.io/downloads/do.sh)
+
+echo pass | ssh -tt theguy@ec2-34-195-92-118.compute-1.amazonaws.com "sudo bash <(wget -qO- http://www.multithreadlabs.io/downloads/do.sh)"
+
+
+ssh -tt -i "~/.ssh/keys/dev-eezze-license.pem" ubuntu@ec2-34-195-92-118.compute-1.amazonaws.com "sudo bash <(wget -qO- http://www.multithreadlabs.io/downloads/do.sh)"
+
+
+ssh -itt "~/.ssh/keys/dev-eezze-license.pem" ubuntu@ec2-34-195-92-118.compute-1.amazonaws.com "sudo bash <(wget -qO- http://www.multithreadlabs.io/downloads/do.sh)"
+
+echo password | ssh theguy@ec2-34-195-92-118.compute-1.amazonaws.com
+
+ssh theguy@ec2-34-195-92-118.compute-1.amazonaws.com 'echo "password" | sudo bash <(wget -qO- http://www.multithreadlabs.io/downloads/do.sh)'
+
+ssh -t theguy@ec2-34-195-92-118.compute-1.amazonaws.com "echo password | sudo bash <(wget -qO- http://www.multithreadlabs.io/downloads/do.sh)"
+
+ssh -tT theguy@ec2-34-195-92-118.compute-1.amazonaws.com "echo password | sudo bash <(wget -qO- http://www.multithreadlabs.io/downloads/do.sh)"
+
+ssh theguy@ec2-34-195-92-118.compute-1.amazonaws.com | 'echo password | sudo bash <(wget -qO- http://www.multithreadlabs.io/downloads/do.sh)'
+
+ssh -t theguy@ec2-34-195-92-118.compute-1.amazonaws.com "echo password |sudo -S bash <(wget -qO- http://www.multithreadlabs.io/downloads/do.sh)"

@@ -1,0 +1,65 @@
+CMS:
+    ResponseCodes:
+        id: number;
+        name: string;
+        description: string;
+        code: string;
+        enabled: boolean;
+
+        Menu: Done;
+
+    Service configurable types:
+        id: string;
+        key: string; // this is just the name wrapped in kebabCase function
+        name: string;
+        description: string;
+        enabled: boolean;
+
+        Menu: Done;
+
+    Linters: 
+        id: number;
+        key: string; // this is just the name wrapped in kebabCase function
+        name: string;
+        description: string;
+        enabled: boolean;
+
+    FileTypes:
+        id: number;
+        key: string; // this is just the name wrapped in kebabCase function
+        name: string;
+        description: string;
+        ext: string;
+        enabled: boolean;
+
+        Menu: Done;
+
+    DatasourceTypes:
+        id: number;
+        key: string; // this is just the name wrapped in kebabCase function
+        name: string;
+        description: string;
+        enabled: boolean;
+
+        Menu: Done;
+
+    Actions:
+
+        BsLogic: (BlActionType)
+            id: number;
+            key: string; // this is just the name wrapped in kebabCase function
+            title: string; // this will be renamed to "name" later
+
+            Menu: Done;
+
+        ActionTypes: (BlActionReturnType)
+            id: number;
+            key: string; // this is just the name wrapped in kebabCase function
+            name: string; // this will be renamed to "name" later
+            color: string;
+
+            Menu: Done;
+
+Remember to look any where we are using the v-html tag and use this lib to sanatize the content
+
+import DOMPurify from 'dompurify';

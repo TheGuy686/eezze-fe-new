@@ -1,0 +1,16 @@
+{
+	"Debug Block": {
+		"prefix": "d",
+		"body": [
+		  "<d :d=\"$1\" />"
+		],
+		"description": "Inserts a debug object block"
+	},
+	"Console Log": {
+		"prefix": "cl",
+		"body": [
+		  "console.log($1);"
+		],
+		"description": "Inserts a console.log statement"
+	}
+}

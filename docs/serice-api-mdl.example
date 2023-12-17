@@ -1,0 +1,1241 @@
+{
+    id:"",
+    name:"",
+    description:"",
+    actionInput:[
+        {
+            id: 'action-input-1',
+            name: "", //string whatever 
+            type: "", //number // kebabCase
+            value: 
+                sting: '${adm.request.auth.user.email}'
+            [
+              { 
+                id: '1',
+                type: 'text',
+                name: 'Action 1',
+                actions: [
+                  {
+                    id: '1-1',
+                    type: 'new',
+                    // this could be different per type
+                    logic: {
+                      formula: '123${1}*73+12${2}',
+                      raw: '123${1}*73+12${2}',
+                      variables: [
+                        {
+                          id: 1,
+                          pos: 1,
+                          color: 'blue',
+                          value: 'fill-path',
+                          example: 2
+                        },
+                        {
+                          id: 2,
+                          pos: 2,
+                          color: 'orange',
+                          value: 'fill-path',
+                          example: 2
+                        },
+                        {
+                          id: 3,
+                          pos: 3,
+                          color: 'black',
+                          value: 'fill-path',
+                          example: 2
+                        }
+                      ]
+                    },
+                    returns:  'number',
+                    actions: [],
+                  }
+                ]
+              },
+              {
+                id: '2',
+                type: 'text',
+                name: 'Action 2',
+                actions: [
+                  {
+                    id: '2-1',
+                    type: 'number-operation',
+                    // type: 'new',
+                    // this could be different per type
+                    logic: {
+                      subtype: 'calculation',
+                      formula: '123${1}*73+12${2}',
+                      raw: '123${1}*73+12${2}',
+                      variables: [
+                        {
+                          id: 1,
+                          pos: 1,
+                          color: 'blue',
+                          value: 'fill-path',
+                          example: 2
+                        },
+                        {
+                          id: 2,
+                          pos: 2,
+                          color: 'orange',
+                          value: 'fill-path',
+                          example: 2
+                        },
+                        {
+                          id: 3,
+                          pos: 3,
+                          color: 'black',
+                          value: 'fill-path',
+                          example: 2
+                        }
+                      ]
+                    },
+                    returns:  'number',
+                    actions: [
+                      {
+                        id: '2-1-1',
+                        type: 'new',
+                        // this could be different per type
+                        logic: ``,
+                        returns:  'number',
+                        actions: [],
+                      },
+                      {
+                        id: '2-1-2',
+                        type: 'new',
+                        // this could be different per type
+                        logic: ``,
+                        returns:  'number',
+                        actions: [],
+                      },
+                    ],
+                  },
+                  {
+                    id: '2-2',
+                    type: 'number-operation',
+                    // this could be different per type
+                    // this should be called metadata
+                    logic: {
+                      formula: '123${1}*73+12${2}',
+                      raw: '123${1}*73+12${2}',
+                      subtype: 'calculation',
+                      variables: [
+                        {
+                          id: 1,
+                          pos: 1,
+                          color: 'blue',
+                          value: 'fill-path',
+                          example: 2
+                        },
+                        {
+                          id: 2,
+                          pos: 2,
+                          color: 'orange',
+                          value: 'fill-path',
+                          example: 2
+                        },
+                        {
+                          id: 3,
+                          pos: 3,
+                          color: 'black',
+                          value: 'fill-path',
+                          example: 2
+                        }
+                      ]
+                    },
+                    returns:  'number',
+                    actions: [
+                      {
+                        id: '2-2-1',
+                        type: 'list-process',
+                        // this could be different per type
+                        logic: ``,
+                        returns:  'list',
+                        actions: [],
+                      },
+                      {
+                        id: '2-2-2',
+                        type: 'number-operation',
+                        // this could be different per type
+                        logic: {
+                          formula: '123${1}*73+12${2}',
+                          raw: '123${1}*73+12${2}',
+                          subtype: 'calculation',
+                          variables: [
+                              {
+                                id: 1,
+                                example: 2
+                              },
+                              {
+                                id: 2,
+                                example: 2
+                              },
+                              {
+                                id: 3,
+                                example: 2
+                              }
+                          ]
+                        },
+                        returns:  'number',
+                        actions: [],
+                      },
+                    ],
+                  },
+                  {
+                    id: '2-2-3',
+                    type: 'assign-values',
+                    logic: '',
+                    returns:  'void',
+                    actions: [
+                      {
+                        id: 'assign-id-test-1',
+                        type: 'number-operation',
+                        logic: {
+                          subtype: 'calculation',
+                          prop: 'prop12',
+                          formula: '123${1}*73+12${2}',
+                          raw: '123${1}*73+12${2}',
+                          variables: [
+                            {
+                              id: 1,
+                              example: 2
+                            },
+                            {
+                              id: 2,
+                              example: 2
+                            },
+                            {
+                              id: 3,
+                              example: 2
+                            }
+                          ]
+                        },
+                        returns:  'number',
+                        actions: [],
+                      },
+                      {
+                        id: 'assign-id-test-2',
+                        type: 'formatter',
+                        logic: {
+                          subtype: 'string-interpolate',
+                          prop: 'prop2',
+                          raw: '${1} - ${2}',
+                          variables: [
+                            {
+                              id: 1,
+                              example: 'Ryan'
+                            },
+                            {
+                              id: 2,
+                              example: 'Cooke'
+                            },
+                          ]
+                        },
+                        returns:  'text',
+                        actions: [],
+                      },
+                      {
+                        id: 'assign-id-test-3',
+                        type: 'formatter',
+                        logic: {
+                          subtype: 'date-interpolate',
+                          prop: 'prop3',
+                          format: 'DD/MM/YYYY',
+                          source: 'full-url',
+                          example: '2022-01-12 18:10:43',
+                          raw: '${1}-${2}-${3}: ${4}',
+                          opArgs: [
+                            {
+                              id: 'arg-1',
+                              value: 1,
+                              example: '12'
+                            },
+                          ],
+                          variables: [
+                            {
+                              id: 1,
+                              pos: 1,
+                              color: 'blue',
+                              format: {
+                                group: 'year',
+                                value: 'YYYY'
+                              },
+                              value: 'full-url',
+                              example: '2022'
+                            },
+                            {
+                              id: 2,
+                              pos: 2,
+                              color: 'orange',
+                              format: {
+                                group: 'month',
+                                value: 'MM'
+                              },
+                              value: 'full-url',
+                              example: '02'
+                            },
+                            {
+                              id: 3,
+                              pos: 3,
+                              color: 'brown',
+                              format:{ 
+                                group: 'quarter',
+                                value: 'Q' 
+                              },
+                              value: 'full-url',
+                              example: '31'
+                            },
+                            {
+                              id: 4,
+                              pos: 4,
+                              color: 'red',
+                              value: 'host',
+                              example: '31'
+                            },
+                          ]
+                        },
+                        returns:  'text',
+                        actions: [],
+                      },
+                      {
+                        id: 'assign-id-test-4',
+                        type: 'action-context',
+                        logic: {
+                          subtype: 'host',
+                          prop: 'prop4',
+                          raw: '',
+                          variables: []
+                        },
+                        returns:  'text',
+                        actions: [],
+                      },
+                      {
+                        id: 'assign-id-test-5',
+                        type: 'number-operation',
+                        logic:{
+                            subtype: 'addition',
+                            prop: 'prop5',
+                            format: '',
+                            source: '',
+                            example: '',
+                            raw: '',
+                            opArgs:[
+                              {
+                                id: 'arg-1',
+                                value: 'host',
+                                example: '12'
+                              },
+                            ],
+                            variables:[]
+                        },
+                        returns: 'number',
+                        actions: []
+                      },
+                      {
+                        id: 'assign-id-test-6',
+                        type: 'assign-primitive',
+                        logic: { 
+                          prop: 'prop6',
+                          subtype: 'text',
+                          raw:  'This is just a string',
+                          format: '',
+                          example: '',
+                          source: '',
+                          variables:[],
+                          opArgs:[],
+                        },
+                        returns: 'text',
+                        actions: [],
+                      },
+                      {
+                        id: 'assign-id-test-7',
+                        type: 'assign-primitive',
+                        logic: { 
+                          prop: 'prop7',
+                          subtype: 'number',
+                          raw:  '${1}0${2}34${3}5',
+                          format: '',
+                          example: '',
+                          source: '',
+                          variables:[
+                            {
+                              id: 1,
+                              pos: 1,
+                              color: 'blue',
+                              value: 'full-url',
+                              example: '2022'
+                            },
+                            {
+                              id: 2,
+                              pos: 2,
+                              color: 'orange',
+                              value: 'full-url',
+                              example: '02'
+                            },
+                            {
+                              id: 3,
+                              pos: 3,
+                              color: 'brown',
+                              value: 'full-url',
+                              example: '31'
+                            },
+                          ],
+                          opArgs:[],
+                        },
+                        returns: 'text',
+                        actions: [],
+                      },
+                      {
+                        id: 'assign-id-test-8',
+                        type: 'assign-primitive',
+                        logic: { 
+                          prop: 'prop17',
+                          subtype: 'object',
+                          raw:  [
+                              {
+                                key: 'propMain',
+                                value: 'host',
+                                returns: 'object',
+                                data:  [
+                                  {
+                                    key: 'prop1',
+                                    value: 'host',
+                                    returns: 'number',
+                                    data: []
+                                  },
+                                  {
+                                    key: 'prop2',
+                                    value: 'host',
+                                    returns: 'text',
+                                    data: []
+                                  },
+                                  {
+                                    key: 'prop3',
+                                    value: 'full-url',
+                                    returns: 'boolean',
+                                    data: []
+                                  },
+                                  {
+                                    key: 'prop34',
+                                    value: '',
+                                    returns: 'object',
+                                    data: [
+                                      {
+                                        key: 'prop344',
+                                        value: '',
+                                        returns: 'object',
+                                        data: [
+                                          {
+                                            key: 'prop34546',
+                                            value: '',
+                                            returns: 'object',
+                                            data: [
+                                              {
+                                                key: 'prop348765',
+                                                value: 'host',
+                                                returns: 'boolean',
+                                                data: []
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                key: 'rtyuhf',
+                                value: 'host',
+                                returns: 'number',
+                                data: []
+                              },
+                          ],
+                          format: '',
+                          example: '',
+                          source: '',
+                          variables:[],
+                          opArgs:[],
+                        },
+                        returns: 'object',
+                        actions: [],
+                      },
+                      {
+                        id: 'assign-id-test-9',
+                        type: 'assign-primitive',
+                        logic: { 
+                          prop: 'prop8',
+                          subtype: 'boolean',
+                          raw:  [
+                            {
+                              type: 'condition',
+                              operator: 'equals-to',
+                              opArgs: [
+                                {
+                                  id: 'arg-1',
+                                  type: 'boolean',
+                                  value: 'host',
+                                  example: '3',
+                                },
+                                {
+                                  id: 'arg-2',
+                                  type: 'number',
+                                  value: 'host',
+                                  example: '3',
+                                }
+                              ]
+                            },
+                            {
+                              type: 'linker',
+                              operator: 'and',
+                              opArgs: [],
+                            },
+                            {
+                              type: 'condition',
+                              operator: 'equals-to',
+                              opArgs: [
+                                {
+                                  id: 'arg-3',
+                                  type: 'number',
+                                  value: 'host',
+                                  example: '3',
+                                },
+                                {
+                                  id: 'arg-4',
+                                  type: 'number',
+                                  value: 'host',
+                                  example: '3',
+                                }
+                              ],
+                            },
+                            {
+                              type: 'linker',
+                              operator: 'or',
+                              opArgs: [],
+                            },
+                            {
+                              type: 'condition-group',
+                              opArgs: [],
+                              group: [
+                                {
+                                  type: 'condition',
+                                  operator: 'equals-to',
+                                  opArgs: [
+                                    {
+                                      id: 'arg-5',
+                                      type: 'number',
+                                      value: 'host',
+                                      example: '31',
+                                    },
+                                    {
+                                      id: 'arg-6',
+                                      type: 'number',
+                                      value: 'host',
+                                      example: '31',
+                                    }
+                                  ]
+                                },
+                                {
+                                  type: 'linker',
+                                  operator: 'or',
+                                  opArgs: [],
+                                },
+                                {
+                                  type: 'condition',
+                                  operator: 'is-less-than',
+                                  opArgs: [
+                                    {
+                                      id: 'arg-7',
+                                      type: 'number',
+                                      value: 'host',
+                                      example: '100',
+                                    },
+                                    {
+                                      id: 'arg-8',
+                                      type: 'number',
+                                      value: 'host',
+                                      example: '101',
+                                    }
+                                  ]
+                                },
+                                {
+                                  type: 'linker',
+                                  operator: 'and',
+                                  opArgs: [],
+                                },
+                                {
+                                  type: 'condition-group',
+                                  opArgs: [],
+                                  group: [
+                                    {
+                                      type: 'condition',
+                                      operator: 'equals-to',
+                                      opArgs: [
+                                        {
+                                          id: 'arg-5',
+                                          type: 'number',
+                                          value: 'host',
+                                          example: '10',
+                                        },
+                                        {
+                                          id: 'arg-6',
+                                          type: 'number',
+                                          value: 'host',
+                                          example: '10',
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      type: 'linker',
+                                      operator: 'and',
+                                      opArgs: [],
+                                    },
+                                    {
+                                      type: 'condition',
+                                      operator: 'is-less-than',
+                                      opArgs: [
+                                        {
+                                          id: 'arg-7',
+                                          type: 'number',
+                                          value: 'host',
+                                          example: '-9',
+                                        },
+                                        {
+                                          id: 'arg-8',
+                                          type: 'number',
+                                          value: 'host',
+                                          example: '0',
+                                        }
+                                      ]
+                                    },
+                                  ]
+                                },
+                              ]
+                            },
+                            {
+                              type: 'linker',
+                              operator: 'or',
+                              opArgs: [],
+                            },
+                            {
+                              type: 'condition',
+                              operator: 'number-is-between-range',
+                              opArgs: [
+                                {
+                                  id: 'arg-10',
+                                  type: 'number',
+                                  value: 'host',
+                                  example: '2',
+                                },
+                                {
+                                  id: 'arg-11',
+                                  type: 'number',
+                                  value: 'host',
+                                  example: '1',
+                                },
+                                {
+                                  id: 'arg-12',
+                                  type: 'number',
+                                  value: 'host',
+                                  example: '3',
+                                },
+                              ]
+                            },
+                          ],
+                          format: '',
+                          example: true,
+                          source: '',
+                          variables:[],
+                          opArgs:[],
+                        },
+                        returns: 'boolean',
+                        actions: [],
+                      },
+                      {
+                        id: 'assign-id-test-10',
+                        type: 'assign-primitive',
+                        logic: { 
+                          prop: 'prop99',
+                          subtype: 'list',
+                          raw:  [],
+                          format: '',
+                          example: [],
+                          source: '',
+                          variables:[],
+                          opArgs:[],
+                        },
+                        returns: 'list',
+                        actions: [],
+                      },
+                      {
+                        id: 'assign-id-test-11',
+                        type: 'custom',
+                        logic: {
+                          prop: 'prop99',
+                          raw:  `const ryan = 'hello';let ryan1         =     \`\${ryan} - something\`;return ryan;`,
+                          format: '',
+                          example: [],
+                          source: '',
+                          variables:[],
+                          opArgs:[],
+                        },
+                        returns: 'text',
+                        actions: [],
+                      }
+                    ],
+                  },
+                  {
+                    id: '2-2-4',
+                    type: 'format-value',
+                    // this could be different per type
+                    logic: ``,
+                    returns:  'text',
+                    actions: [],
+                  },
+                  {
+                    id: '2-2-5',
+                    type: 'list-process',
+                    // this could be different per type
+                    logic: ``,
+                    returns:  'list',
+                    actions: [],
+                  },
+                  {
+                    id: '2-2-6',
+                    type: 'list-process',
+                    // this could be different per type
+                    logic: ``,
+                    returns:  'list',
+                    actions: [
+                      {
+                        id: '2-2-6-1',
+                        type: 'list-process',
+                        // this could be different per type
+                        logic: ``,
+                        returns:  'list',
+                        actions: [
+                          {
+                            id: '2-2-6-1-1',
+                            type: 'list-process',
+                            // this could be different per type
+                            logic: ``,
+                            returns:  'list',
+                            actions: [],
+                          },
+                          {
+                            id: '2-2-6-1-2',
+                            type: 'format-value',
+                            // this could be different per type
+                            logic: ``,
+                            returns:  'text',
+                            actions: [
+                              {
+                                id: '2-2-6-1-2-1',
+                                type: 'format-value',
+                                // this could be different per type
+                                logic: ``,
+                                returns:  'text',
+                                actions: [],
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                      {
+                        id: 'action-1-logic-2-logic-54-logic-2',
+                        type: 'list-process',
+                        // this could be different per type
+                        logic: ``,
+                        returns:  'list',
+                        actions: [],
+                      },
+                    ],
+                  },
+                  {
+                    id: 'action-1-logic-2-logic-6',
+                    type: 'set-state-values',
+                    // this could be different per type
+                    logic: ``,
+                    returns:  'boolean',
+                    actions: [
+                      {
+                        id: 'assign-id-test-1',
+                        type: 'number-operation',
+                        logic: {
+                          subtype: 'calculation',
+                          prop: 'prop12',
+                          formula: '123${1}*73+12${2}',
+                          raw: '123${1}*73+12${2}',
+                          variables: [
+                            {
+                              id: 1,
+                              example: 2
+                            },
+                            {
+                              id: 2,
+                              example: 2
+                            },
+                            {
+                              id: 3,
+                              example: 2
+                            }
+                          ]
+                        },
+                        returns:  'number',
+                        actions: [],
+                      },
+                    ],
+                  },
+                  {
+                    id: 'action-1-logic-2-logic-74',
+                    type: 'set-stash-values',
+                    // this could be different per type
+                    logic: ``,
+                    returns:  'boolean',
+                    actions: [
+                      {
+                        id: 'assign-id-test-1',
+                        type: 'number-operation',
+                        logic: {
+                          subtype: 'calculation',
+                          prop: 'prop12',
+                          formula: '123${1}*73+12${2}',
+                          raw: '123${1}*73+12${2}',
+                          variables: [
+                            {
+                              id: 1,
+                              example: 2
+                            },
+                            {
+                              id: 2,
+                              example: 2
+                            },
+                            {
+                              id: 3,
+                              example: 2
+                            }
+                          ]
+                        },
+                        returns:  'number',
+                        actions: [],
+                      },
+                      {
+                        id: 'assign-id-test-2',
+                        type: 'formatter',
+                        logic: {
+                          subtype: 'string-interpolate',
+                          prop: 'prop2',
+                          raw: '${1} - ${2}',
+                          variables: [
+                            {
+                              id: 1,
+                              example: 'Ryan'
+                            },
+                            {
+                              id: 2,
+                              example: 'Cooke'
+                            },
+                          ]
+                        },
+                        returns:  'text',
+                        actions: [],
+                      },
+                      {
+                        id: 'assign-id-test-9',
+                        type: 'assign-primitive',
+                        logic: { 
+                          prop: 'prop8',
+                          subtype: 'boolean',
+                          raw:  [
+                            {
+                              type: 'condition',
+                              operator: 'equals-to',
+                              opArgs: [
+                                {
+                                  id: 'arg-1',
+                                  value: 'host',
+                                  example: '3',
+                                },
+                                {
+                                  id: 'arg-2',
+                                  value: 'host',
+                                  example: '3',
+                                }
+                              ]
+                            },
+                            {
+                              type: 'linker',
+                              operator: 'and',
+                              opArgs: [],
+                            },
+                            {
+                              type: 'condition',
+                              operator: 'equals-to',
+                              opArgs: [
+                                {
+                                  id: 'arg-3',
+                                  value: 'host',
+                                  example: '3',
+                                },
+                                {
+                                  id: 'arg-4',
+                                  value: 'host',
+                                  example: '3',
+                                }
+                              ],
+                            },
+                            {
+                              type: 'linker',
+                              operator: 'or',
+                              opArgs: [],
+                            },
+                            {
+                              type: 'condition-group',
+                              opArgs: [],
+                              group: [
+                                {
+                                  type: 'condition',
+                                  operator: 'equals-to',
+                                  opArgs: [
+                                    {
+                                      id: 'arg-5',
+                                      value: 'host',
+                                      example: '31',
+                                    },
+                                    {
+                                      id: 'arg-6',
+                                      value: 'host',
+                                      example: '31',
+                                    }
+                                  ]
+                                },
+                                {
+                                  type: 'linker',
+                                  operator: 'or',
+                                  opArgs: [],
+                                },
+                                {
+                                  type: 'condition',
+                                  operator: 'is-less-than',
+                                  opArgs: [
+                                    {
+                                      id: 'arg-7',
+                                      value: 'host',
+                                      example: '100',
+                                    },
+                                    {
+                                      id: 'arg-8',
+                                      value: 'host',
+                                      example: '101',
+                                    }
+                                  ]
+                                },
+                                {
+                                  type: 'linker',
+                                  operator: 'and',
+                                  opArgs: [],
+                                },
+                                {
+                                  type: 'condition-group',
+                                  opArgs: [],
+                                  group: [
+                                    {
+                                      type: 'condition',
+                                      operator: 'equals-to',
+                                      opArgs: [
+                                        {
+                                          id: 'arg-5',
+                                          value: 'host',
+                                          example: '10',
+                                        },
+                                        {
+                                          id: 'arg-6',
+                                          value: 'host',
+                                          example: '10',
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      type: 'linker',
+                                      operator: 'and',
+                                      opArgs: [],
+                                    },
+                                    {
+                                      type: 'condition',
+                                      operator: 'is-less-than',
+                                      opArgs: [
+                                        {
+                                          id: 'arg-7',
+                                          value: 'host',
+                                          example: '-9',
+                                        },
+                                        {
+                                          id: 'arg-8',
+                                          value: 'host',
+                                          example: '0',
+                                        }
+                                      ]
+                                    },
+                                  ]
+                                },
+                              ]
+                            },
+                            {
+                              type: 'linker',
+                              operator: 'or',
+                              opArgs: [],
+                            },
+                            {
+                              type: 'condition',
+                              operator: 'number-is-between-range',
+                              opArgs: [
+                                {
+                                  id: 'arg-10',
+                                  value: 'host',
+                                  example: '2',
+                                },
+                                {
+                                  id: 'arg-11',
+                                  value: 'host',
+                                  example: '1',
+                                },
+                                {
+                                  id: 'arg-12',
+                                  value: 'host',
+                                  example: '3',
+                                },
+                              ]
+                            },
+                          ],
+                          format: '',
+                          example: true,
+                          source: '',
+                          variables:[],
+                          opArgs:[],
+                        },
+                        returns: 'boolean',
+                        actions: [],
+                      }
+                    ],
+                  },
+                ]
+              }
+          ]
+        }
+    ],
+    logic:[
+        {
+            type: 'msql:get-one-andd-update',
+            // plese be aware that you will be able to get the datasouce from the user model
+            // there is no really much need to sent this through also unless there is some 
+            // issues with getting the DS from the user enity on the API in the decorators
+            enity: 'user',
+            checkOn: [
+                {
+                    column: 'email',
+                    input: '${adm.input.email}'
+                },
+                {
+                    column: 'age',
+                    input: '${adm.input.age}',
+                    logic: {
+                        id: '2',
+                        type: 'string',
+                        name: 'Action 2',
+                        actions: [
+                            {
+                                id: '2-1',
+                                type: 'number-operation',
+                                logic: {
+                                    formula: '123${1}*73+12${2}',
+                                    raw: '123${1}*73+12${2}',
+                                    variables: [
+                                        {
+                                            id: 1,
+                                            pos: 1,
+                                            color: 'blue',
+                                            value: '${adm.request.urlPrams.anExampleNumber}',
+                                            example: 2
+                                        },
+                                        {
+                                            id: 2,
+                                            pos: 2,
+                                            color: 'orange',
+                                            value: '${adm.request.urlPrams.anExampleNumber2}',
+                                            example: 5
+                                        },
+                                        {
+                                            id: 3,
+                                            pos: 3,
+                                            color: 'green',
+                                            value: '${adm.request.urlPrams.anExampleNumber3}',
+                                            example: 1.5
+                                        }
+                                    ]
+                                },
+                                returns:  'number',
+                                actions: [
+                                    {
+                                        id: 'werfdhdgh242234',
+                                        type: 'number-operation',
+                                        logic: {
+                                            formula: '123${1}*73+12',
+                                            raw: '123${1}*73+12',
+                                            variables: [
+                                                {
+                                                    id: 1,
+                                                    pos: 1,
+                                                    color: 'yellow',
+                                                    value: '${adm.action(2).result.randomNumber}',
+                                                    example: 2
+                                                }
+                                            ]
+                                        },
+                                        returns:  'number',
+                                        actions: [],
+                                    },
+                                ],
+                            },
+                        ]
+                    }
+                }
+            ],
+            updateValues: [
+                {
+                    column: 'age',
+                    input: 'adm.request.auth.user.age',
+                    logic: {
+                        id: '2',
+                        type: 'string',
+                        name: 'Action 2',
+                        actions: [
+                            {
+                                id: '2-1',
+                                type: 'number-operation',
+                                logic: {
+                                    formula: '123${1}*73+12${2}${3}',
+                                    raw: '123${1}*73+12${2}${3}',
+                                    variables: [
+                                        {
+                                            id: 1,
+                                            pos: 1,
+                                            color: 'yellow',
+                                            value: '${adm.request.urlPrams.anExampleNumber}',
+                                            example: 2
+                                        },
+                                        {
+                                            id: 2,
+                                            pos: 2,
+                                            color: 'blue',
+                                            value: '${adm.request.urlPrams.anExampleNumber2}',
+                                            example: 5
+                                        },
+                                        {
+                                            id: 3,
+                                            pos: 3,
+                                            color: 'red',
+                                            value: '${adm.request.urlPrams.anExampleNumber3}',
+                                            example: 1.5
+                                        }
+                                    ]
+                                },
+                                returns:  'number',
+                                actions: [
+                                    {
+                                        id: 'werfdhdgh242234',
+                                        type: 'number-operation',
+                                        logic: {
+                                            formula: '123${1}*73+12',
+                                            raw: '123${1}*73+12',
+                                            variables: [
+                                                {
+                                                    id: 1,
+                                                    pos: 1,
+                                                    color: 'blue',
+                                                    value: '${adm.action(2).result.randomNumber}',
+                                                    example: 2
+                                                }
+                                            ]
+                                        },
+                                        returns:  'number',
+                                        actions: [],
+                                    },
+                                ],
+                            },
+                        ]
+                    }
+                }
+            ],
+            // if this is sent through as an empty array then we treat this as the default output of the action
+            output: [
+                {
+                    column: 'age',
+                    input: 'adm.request.auth.user.age',
+                    logic: {
+                        id: '2',
+                        type: 'string',
+                        name: 'Action 2',
+                        actions: [
+                            {
+                                id: '2-1',
+                                type: 'number-operation',
+                                logic: {
+                                    formula: '123${1}*73+12${2}',
+                                    raw: '123${1}*73+12${2}',
+                                    variables: [
+                                        {
+                                            id: 1,
+                                            pos: 1,
+                                            color: 'yellow',
+                                            value: '${adm.request.urlPrams.anExampleNumber}',
+                                            example: 2
+                                        },
+                                        {
+                                            id: 2,
+                                            pos: 2,
+                                            color: 'blue',
+                                            value: '${adm.request.urlPrams.anExampleNumber2}',
+                                            example: 5
+                                        },
+                                        {
+                                            id: 3,
+                                            pos: 3,
+                                            color: 'red',
+                                            value: '${adm.request.urlPrams.anExampleNumber3}',
+                                            example: 1.5
+                                        }
+                                    ]
+                                },
+                                returns:  'number',
+                                actions: [
+                                    {
+                                        id: 'werfdhdgh242234',
+                                        type: 'number-operation',
+                                        logic: {
+                                            formula: '123${1}*73+12',
+                                            raw: '123${1}*73+12',
+                                            variables: [
+                                                {
+                                                    id: 1,
+                                                    pos: 1,
+                                                    color: 'blue',
+                                                    value: '${adm.action(2).result.randomNumber}',
+                                                    example: 2
+                                                }
+                                            ]
+                                        },
+                                        returns:  'number',
+                                        actions: [],
+                                    },
+                                ],
+                            },
+                        ]
+                    }
+                }
+            ],
+            successMessage: 'This is a sample success message',
+            successCode: 200,
+            errorMessge: 'This is a sample error message',
+            errorCode: 400
+    }],
+    output: [],
+}
